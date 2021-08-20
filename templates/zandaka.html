@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{user_info}}さんこんにちは</h1>
+<h1>残高</h1>
+{% for item in zandaka_list %}
+<div class="zandaka">
+    <p>記入日：{{item["date"]}}</p>
+    <p>{{item["ac"]}}:{{item["kingaku"]}}</p>
+      <a href="/edit">更新</a>
+      <!-- 課題3の答えはここ -->
+      <form class="delete" action="/del" method="post">
+        <input type="hidden" name="zandaka" value="#">
+        <input type="button" name="delete" value="削除する">
+      </form><br><br>
+  </div>
+{% endfor %}
+
+{% endblock %}

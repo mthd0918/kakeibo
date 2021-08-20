@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>登録画面</h1>
+<form action="/register" method="post">
+    名前：<input type="text" name="name"><br>
+    パスワード：<input type="password" name="password"><br>
+    <input type="submit" value="登録">
+</form>
+{% endblock %}

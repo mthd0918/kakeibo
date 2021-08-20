@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>残高</h1>
+
+
+<div>
+    <form action="/update">
+      <input type="hidden" value="#" name="#">
+      日付：<textarea name="#" cols="5" rows="1"></textarea><br>
+      <input type="hidden" value="#" name="#">
+      勘定：<textarea name="#" cols="5" rows="1"></textarea><br>
+      <input type="hidden" value="#" name="#">
+      金額：<textarea name="#" cols="5" rows="1"></textarea><br>
+      <input type="submit" name="save" value="更新">
+    </form>
+  </div>
+
+{% endblock %}
