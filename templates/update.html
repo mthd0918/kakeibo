@@ -3,17 +3,11 @@
 {% block content %}
 <h1>残高</h1>
 
-
-<div>
-    <form action="/update">
-      <input type="hidden" value="#" name="#">
-      日付：<textarea name="#" cols="5" rows="1"></textarea><br>
-      <input type="hidden" value="#" name="#">
-      勘定：<textarea name="#" cols="5" rows="1"></textarea><br>
-      <input type="hidden" value="#" name="#">
-      金額：<textarea name="#" cols="5" rows="1"></textarea><br>
-      <input type="submit" name="save" value="更新">
-    </form>
-  </div>
+<form action="/update" method="post">
+  日付：<input type="text" name="date"><br>
+  勘定：<input type="text" name="ac"><br>
+  金額：<input type="number" name="kingaku"><br>
+  <input type="submit" value="更新">
+</form>
 
 {% endblock %}

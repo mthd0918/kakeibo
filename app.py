@@ -7,24 +7,19 @@ app = Flask(__name__)
 
 app.secret_key = "kakeibo"
 
-print('Hello, World')
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/register', methods=["GET","POST"])
 def register():
-    #  登録ページを表示させる
     if request.method == "GET":
         if 'id' in session :
             return redirect ('/zandaka')
         else:
             return render_template("register.html")
 
-    # ここからPOSTの処理
     else:
-        # 登録ページで登録ボタンを押した時に走る処理
         name = request.form.get("name")
         password = request.form.get("password")
         conn = sqlite3.connect('kakeibo.db')
@@ -70,7 +65,8 @@ def zandaka():
         conn = sqlite3.connect('kakeibo.db')
         c = conn.cursor()
         c.execute('select name from user_info where id = ?', (user_id,))
-        user_info = c.fetchone()
+        user_info = c.fetchone()        
+        
         c.execute('select * from zandaka')
         zandaka_list = []
         for row in c.fetchall():
@@ -78,10 +74,22 @@ def zandaka():
         print(zandaka_list)
         c.close()
         return render_template('zandaka.html', user_info = user_info, zandaka_list = zandaka_list)
-
     else:
         return redirect('/login')
-@app.route
+
+@app.route('/update', methods=["GET","POST"])
+def update():
+    date = request.form.get("date")
+    ac = request.form.get("ac")
+    kingaku = request.form.get("kingaku")
+    conn = sqlite3.connect('kakeibo.db')
+    c = conn.cursor()
+    c.execute("insert into zandaka values(null,?,?,?)", (date,ac,kingaku))
+    conn.commit()
+    conn.close()
+    return render_template('update.html')
+
+
 
 
 if __name__ == '__main__':
