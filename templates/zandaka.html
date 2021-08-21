@@ -8,10 +8,8 @@
     <p>記入日：{{item["date"]}}</p>
     <p>{{item["ac"]}}:{{item["kingaku"]}}</p>
       <a href="/update">更新</a>
-      <!-- 課題3の答えはここ -->
       <form class="delete" action="/del" method="post">
-        <input type="hidden" name="zandaka" value="#">
-        <input type="button" name="delete" value="削除する">
+        <input type="submit" value="削除">
       </form><br><br>
   </div>
 {% endfor %}

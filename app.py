@@ -2,6 +2,7 @@
 import sqlite3
 # flaskをimportしてflaskを使えるようにする
 from flask import Flask , render_template , request, redirect, session
+from flask.templating import render_template_string
 # appにFlaskを定義して使えるようにしています。Flask クラスのインスタンスを作って、 app という変数に代入しています。
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ app.secret_key = "kakeibo"
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/register', methods=["GET","POST"])
 def register():
@@ -28,6 +30,7 @@ def register():
         conn.commit()
         conn.close()
         return redirect('/login')
+
 
 @app.route('/login', methods=["GET","POST"])
 def login():
@@ -58,6 +61,7 @@ def logout():
     session.pop('id',None)
     return redirect('/login')
         
+
 @app.route("/zandaka")
 def zandaka():
     if "user_id" in session:
@@ -77,6 +81,7 @@ def zandaka():
     else:
         return redirect('/login')
 
+
 @app.route('/update', methods=["GET","POST"])
 def update():
     date = request.form.get("date")
@@ -90,6 +95,15 @@ def update():
     return render_template('update.html')
 
 
+@app.route('/del', methods=["GET", "POST"])
+def del_task():
+    id = request.form.get("id")
+    conn = sqlite3.connect('kakeibo.db')
+    c = conn.cursor()
+    c.execute("update zandaka set del_flag = 1 where id=?", (id,))
+    conn.commit()
+    conn.close()
+    return redirect("/zandaka")
 
 
 if __name__ == '__main__':
