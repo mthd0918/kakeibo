@@ -9,7 +9,8 @@
     <p>{{item["ac"]}}:{{item["kingaku"]}}</p>
       <a href="/update">更新</a>
       <form class="delete" action="/del" method="post">
-        <input type="submit" value="削除">
+        <input type="hidden" name="acId" value="{{item['id']}}">
+        <input type="submit" name="delete" value="削除する">
       </form><br><br>
   </div>
 {% endfor %}
