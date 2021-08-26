@@ -83,7 +83,7 @@ def zandaka():
         return redirect('/login')
 
 
-@app.route('/update', methods=["POST"])
+@ app.route('/zandaka_update', methods=["POST"])
 def update():
     user_id = session["user_id"]
     date = request.form.get("date")
