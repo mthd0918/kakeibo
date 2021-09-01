@@ -7,7 +7,7 @@
 <div class="zandaka">
     <p>記入日：{{item["date"]}}</p>
     <p>{{item["ac"]}}:{{item["kingaku"]}}</p>
-      <a href="/update">更新</a>
+      <a href="/zandaka_update">更新</a>
       <form class="delete" action="/del" method="post">
         <input type="hidden" name="acId" value="{{item['id']}}">
         <input type="submit" name="delete" value="削除する">
